@@ -2,32 +2,130 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+/*
+    Pokemon type colors
+*/
+.type-normal {
+  --color: #c2c2a1;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.type-flying {
+  --color: #bab0d5;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.type-ghost {
+  --color: #735797;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.type-dark {
+  --color: #333;
+}
+
+.type-steel {
+  --color: #ccccde;
+}
+
+.type-ground {
+  --color: #b1736c;
+}
+
+.type-poison {
+  --color: #7c538c;
+}
+
+.type-grass {
+  --color: #48d0b0;
+}
+
+.type-fire {
+  --color: #fb6c6c;
+}
+
+.type-electric {
+  --color: #ffd86f;
+}
+
+.type-fairy {
+  --color: #f469a9;
+}
+
+.type-bug {
+  --color: #c3ce75;
+}
+
+.type-fighting {
+  --color: #d6b591;
+}
+
+.type-water {
+  --color: #609fb5;
+}
+
+.type-psychic {
+  --color: #9b7fa6;
+}
+
+.type-ice {
+  --color: #7fccec;
+}
+
+.type-rock {
+  --color: #a6aab6;
+}
+
+.type-dragon {
+  --color: #f9be00;
+}
+
+.colored-text {
+  color: var(--color);
+}
+/*
+    Background Pokeball decoration
+*/
+.bg-pokeball {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: -10px;
+  bottom: -10px;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.bg-pokeball::before,
+.bg-pokeball::after {
+  display: block;
+  border-radius: 100%;
+}
+
+.bg-pokeball::before {
+  content: "";
+  position: relative;
+  width: 10em;
+  padding-bottom: 10em;
+  border: 4em solid currentColor;
+  clip-path: polygon(
+    0 0,
+    0 40%,
+    50% 40%,
+    50% 60%,
+    0 60%,
+    0 100%,
+    100% 100%,
+    100% 60%,
+    50% 60%,
+    50% 40%,
+    100% 40%,
+    100% 0
+  );
+}
+
+.bg-pokeball::after {
+  content: "";
+  position: absolute;
+  width: 5em;
+  padding-bottom: 5em;
+  background-color: currentColor;
 }
