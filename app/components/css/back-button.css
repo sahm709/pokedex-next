@@ -4,7 +4,7 @@
   cursor: pointer;
   position: absolute;
   z-index: 999;
-  left: 20px;
+  left: 400px;
   top: 40px;
   height: var(--width);
   width: 20px;

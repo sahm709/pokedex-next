@@ -41,16 +41,16 @@ const tabs = [
 
 const PokemonDetailPage = ({ params }: { params: { id?: string } }) => {
   const { id } = params;
-  const { pokemons, setPokemons } = usePokemons();
+  const { pokemons } = usePokemons();
   const [currentTab, setCurrentTab] = useState(TAB_DEFAULT);
-  const { pokemonList, isLoading } = useFetchPokemons(); // Use the useFetchPokemons hook
+
   const router = useRouter(); // Initialize useRouter hook
 
   useEffect(() => {
-    if (pokemons.length === 0 && !isLoading) {
-      setPokemons(pokemonList);
+    if (pokemons.length === 0) {
+      router.push("/"); // Redirect to the homepage if pokemons array is empty
     }
-  }, [isLoading, pokemonList, pokemons, setPokemons]);
+  }, [pokemons.length, router]);
 
   const pokemon = pokemons.find((p) => p.id === Number(id));
   if (!pokemon) return <Loader />;
@@ -67,14 +67,10 @@ const PokemonDetailPage = ({ params }: { params: { id?: string } }) => {
     } ${typeClassNames}`;
   };
 
-  const handleBack = () => {
-    router.push("/"); // Push the user to the homepage
-  };
   return (
     <div className="flex justify-center items-start p-0 h-screen">
-      {isLoading && <Loader />}
       <div className="pokemon-detail flex flex-col h-3/4 max-w-3xl w-full">
-        <BackButton onClick={handleBack} />
+        <BackButton onClick={() => router.push("/")} />
         <div className="detail-card min-h-96 mt-0">
           <PokemonCard pokemon={pokemon} />
         </div>
