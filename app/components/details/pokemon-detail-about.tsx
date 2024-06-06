@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { PokemonDetail } from "../../models/models";
 import Loader from "../loader";
+import Image from "next/image";
+
 interface PokemonCardProps {
   pokemon: PokemonDetail;
 }
@@ -67,10 +69,12 @@ const PokemonAbout = ({ pokemon }: PokemonCardProps) => {
 
   const weaknessDisplay = Object.entries(weaknesses).map(([key, value]) => (
     <div key={key} className="flex items-center">
-      <img
-        src={`/types/${key}.png`}
+      <Image
         alt={key}
+        src={`/types/${key}.png`}
         className="self-center justify-self-end mr-2"
+        width={100}
+        height={100}
       />
       <span>{value}x</span>
     </div>

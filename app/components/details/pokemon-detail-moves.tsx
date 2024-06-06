@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { PokemonDetail } from "../../models/models";
 import Loader from "../loader";
+import Image from "next/image";
 
 interface PokemonMovesProps {
   pokemon: PokemonDetail;
@@ -57,9 +58,11 @@ const PokemonMoves = ({ pokemon }: PokemonMovesProps) => {
                   <p className="font-bold">{name}</p>
                   <p>Level {level}</p>
                 </div>
-                <img
-                  src={typeIconUrl}
+                <Image
                   alt={type}
+                  src={typeIconUrl}
+                  width={100}
+                  height={100}
                   className="self-center justify-self-end"
                 />
               </div>

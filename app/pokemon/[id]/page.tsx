@@ -12,6 +12,7 @@ import { useFetchPokemons } from "@/app/hooks/useFetchData";
 import BackButton from "@/app/components/back-button";
 import { useRouter } from "next/navigation";
 import Loader from "@/app/components/loader";
+import Image from "next/image";
 
 const TAB_ABOUT = "about";
 const TAB_STATS = "base-stats";
@@ -49,7 +50,7 @@ const PokemonDetailPage = ({ params }: { params: { id?: string } }) => {
     if (pokemons.length === 0 && !isLoading) {
       setPokemons(pokemonList);
     }
-  }, [pokemons, pokemonList]);
+  }, [isLoading, pokemonList, pokemons, setPokemons]);
 
   const pokemon = pokemons.find((p) => p.id === Number(id));
   if (!pokemon) return <Loader />;
@@ -71,13 +72,20 @@ const PokemonDetailPage = ({ params }: { params: { id?: string } }) => {
   };
   return (
     <div className="flex justify-center items-start p-0 h-screen">
+      {isLoading && <Loader />}
       <div className="pokemon-detail flex flex-col h-3/4 max-w-3xl w-full">
         <BackButton onClick={handleBack} />
         <div className="detail-card min-h-96 mt-0">
           <PokemonCard pokemon={pokemon} />
         </div>
         <div className="details">
-          <img src={imgURL} className="pokemon-image" alt={pokemon.name} />
+          <Image
+            alt={pokemon.name}
+            src={imgURL}
+            className="pokemon-image"
+            width={100}
+            height={100}
+          />
           <div className="tabs-switch-container">
             {tabs.map(({ id, label }) => (
               <button

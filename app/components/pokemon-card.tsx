@@ -3,6 +3,7 @@ import { PokemonDetail } from "../models/models";
 import "./css/pokemon-card.css";
 import { getImageURL } from "../lib/pokemonApi";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 interface PokemonCardProps {
   pokemon: PokemonDetail;
@@ -17,9 +18,6 @@ function PokemonCard({ pokemon, onClick }: PokemonCardProps) {
     className = types.map(({ type }) => "type-" + type.name).join(" "),
     paddedId = "#" + id.toString().padStart(3, "000");
 
-  // const handleClick = () => {
-  //   router.push(`/pokemon/${id}`);
-  // };
   return (
     <div className="card-container p-4 h-full cursor-pointer" onClick={onClick}>
       <div className={`card ${className}`}>
@@ -29,19 +27,18 @@ function PokemonCard({ pokemon, onClick }: PokemonCardProps) {
 
           <div className="pokemon-types">
             {types.map(({ type }) => (
-              // <span className="type" key={type.name}>
-              //   {type.name}
-              // </span>
-              <img
+              <Image
+                alt={type.name}
+                key={type.name}
                 src={`/types/${type.name}.png`}
-                alt={type}
-                className="self-center justify-self-end mb-2"
+                width={100}
+                height={100}
               />
             ))}
           </div>
         </div>
         <div className="pokemon-image">
-          <img alt={name} src={imgURL} />
+          <Image alt={name} key={name} src={imgURL} width={100} height={100} />
         </div>
       </div>
     </div>

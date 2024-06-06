@@ -18,11 +18,10 @@ interface NormalizeEvolutionChainResult {
 // Hook to normalize an evolution chain into an array.
 const useNormalizeEvolutionChain = ({
   chain,
-  id,
 }: NormalizeEvolutionChainArgs): NormalizeEvolutionChainResult => {
   return useMemo(() => {
     return { evolutionChain: chain ? normalizeEvolutionChain(chain) : [] };
-  }, [chain, id]);
+  }, [chain]);
 };
 
 export default useNormalizeEvolutionChain;
